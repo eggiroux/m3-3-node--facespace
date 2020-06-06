@@ -10,6 +10,8 @@
 .homepage__all--user {
   margin: 0 4px;
   position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 .homepage__all--user img {
   width: 120px;
@@ -36,4 +38,18 @@
   right: 0px;
   max-width: 25px;
   height: auto;
+}
+
+.friend-ribbon {
+  position: absolute;
+
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  padding-top: 7px;
+  right: -25px;
+  top: 7px;
+  color: white;
+  background: var(--primary-color);
+  transform: rotate(-320deg);
 }
