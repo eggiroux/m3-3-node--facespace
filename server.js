@@ -45,9 +45,9 @@ const handleSignin = (req, res) => {
 const handleName = (req, res) => {
   const firstName = req.query.firstName;
   const user = users.find((user) => user.name === firstName);
-  currentUser = user;
 
   if (user) {
+    currentUser = user;
     const friends = users.filter((potentialFriend) =>
       user.friends.includes(potentialFriend._id)
     );
