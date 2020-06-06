@@ -21,10 +21,11 @@ const handleHomepage = (req, res) => {
 const handleProfile = (req, res) => {
   const userID = req.params.id;
   const user = users.find((user) => user._id === userID);
+  const friends = users.filter((potentialFriend) =>
+    user.friends.includes(potentialFriend._id)
+  );
 
-  console.log("LOGGING SOME BULLSHIT", user);
-
-  res.status(200).render("./pages/profile", { user: user });
+  res.status(200).render("./pages/profile", { user: user, friends: friends });
 };
 
 // -----------------------------------------------------
