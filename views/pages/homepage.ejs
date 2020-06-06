@@ -7,6 +7,12 @@
     <li class="homepage__all--user">
       <a href="./users/<%-user._id%>"><img src="<%= user.avatarUrl %>" /></a>
         <p class="hover-name"><%- user.name %></p>
+        <%if (currentUser.name){ %>
+            <%if (currentUser.friends.includes(user._id)){ %>
+                <img class= "friendStar" src="/images/friendStar.png" />
+     
+                <%}%>
+            <%}%>
       </li>
     </li>
     <% }) %>

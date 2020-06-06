@@ -35,7 +35,11 @@ const handleProfile = (req, res) => {
 };
 
 const handleSignin = (req, res) => {
-  res.status(200).render("./pages/signin", { currentUser: currentUser });
+  if (currentUser.name) {
+    res.render("./pages/homepage", { users: users, currentUser: currentUser });
+  } else {
+    res.status(200).render("./pages/signin", { currentUser: currentUser });
+  }
 };
 
 const handleName = (req, res) => {
