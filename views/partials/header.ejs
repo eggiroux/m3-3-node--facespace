@@ -7,5 +7,12 @@
 </head>
 <body>
   <header class="header">
-      <h1 class='site-title'>Facespace</h1>
+      <a href="http://localhost:8000/"><h1 class='site-title'>Facespace</h1></a>
+
+  <% if (currentUser.name) {%>
+    <h4 class='user-signin'>Howdy <%= currentUser.name %></h4>
+    <%} else {%>
+      <a href="./signin"><h4 class='user-signin'>Sign In</h4></a>
+      <% } %>
+
   </header>

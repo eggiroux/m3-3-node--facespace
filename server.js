@@ -13,7 +13,9 @@ const handleFourOhFour = (req, res) => {
 };
 //declare the homepage function
 const handleHomepage = (req, res) => {
-  res.status(200).render("./pages/homepage", { users: users });
+  res
+    .status(200)
+    .render("./pages/homepage", { users: users, currentUser: currentUser });
 };
 
 //declare the personal page function
@@ -25,23 +27,31 @@ const handleProfile = (req, res) => {
     user.friends.includes(potentialFriend._id)
   );
 
-  res.status(200).render("./pages/profile", { user: user, friends: friends });
+  res.status(200).render("./pages/profile", {
+    user: user,
+    friends: friends,
+    currentUser: currentUser,
+  });
 };
 
 const handleSignin = (req, res) => {
-  res.status(200).render("./pages/signin", {});
+  res.status(200).render("./pages/signin", { currentUser: currentUser });
 };
 
 const handleName = (req, res) => {
   const firstName = req.query.firstName;
   const user = users.find((user) => user.name === firstName);
+  currentUser = user;
 
   if (user) {
     const friends = users.filter((potentialFriend) =>
       user.friends.includes(potentialFriend._id)
     );
-
-    res.status(200).render("./pages/profile", { user: user, friends: friends });
+    res.status(200).render("./pages/profile", {
+      user: user,
+      friends: friends,
+      currentUser: currentUser,
+    });
   } else {
     res.status(404).redirect("signin");
   }
