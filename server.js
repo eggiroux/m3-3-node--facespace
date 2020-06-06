@@ -28,6 +28,25 @@ const handleProfile = (req, res) => {
   res.status(200).render("./pages/profile", { user: user, friends: friends });
 };
 
+const handleSignin = (req, res) => {
+  res.status(200).render("./pages/signin", {});
+};
+
+const handleName = (req, res) => {
+  const firstName = req.query.firstName;
+  const user = users.find((user) => user.name === firstName);
+
+  if (user) {
+    const friends = users.filter((potentialFriend) =>
+      user.friends.includes(potentialFriend._id)
+    );
+
+    res.status(200).render("./pages/profile", { user: user, friends: friends });
+  } else {
+    res.status(404).redirect("signin");
+  }
+};
+
 // -----------------------------------------------------
 // server endpoints
 express()
@@ -39,6 +58,8 @@ express()
   // endpoints
   .get("/", handleHomepage)
   .get("/users/:id", handleProfile)
+  .get("/signin", handleSignin)
+  .get("/getname", handleName)
 
   // a catchall endpoint that will send the 404 message.
   .get("*", handleFourOhFour)
